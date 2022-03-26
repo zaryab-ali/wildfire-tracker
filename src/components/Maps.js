@@ -1,11 +1,20 @@
 import GoogleMapReact from 'google-map-react';
+import Hurr from './Hurr';
 import Locationmarker from './LocationMarker';
+import Volcano from './volcano';
 
 const Maps = ({ eventData, center , zoom }) => {
 
     const markers = eventData.map(ev => {
         if(ev.categories[0].id === 8){
             return <Locationmarker lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}/>
+        }
+        else if(ev.categories[0].id === 12){
+            return <Volcano lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}/>
+        }
+        else if(ev.categories[0].id === 10 || ev.categories[0].id === 9){
+            return <Hurr lat={ev.geometries[0].coordinates[1]} lng={ev.geometries[0].coordinates[0]}/>
+
         }
         return null
     })
